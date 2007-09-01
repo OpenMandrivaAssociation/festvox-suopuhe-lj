@@ -2,7 +2,7 @@
 %define name	festvox-suopuhe-lj
 %define version	1.0g
 %define date	20051204
-%define rel	1
+%define rel	2
 %define release	%mkrel %date.%rel
 
 Summary:	Festival Voice - Finnish female speaker (suo_fi_lj)
@@ -13,8 +13,10 @@ License:	LGPL
 Group:		Sound
 URL:		http://phon.joensuu.fi/suopuhe/
 Source:		http://phon.joensuu.fi/suopuhe/tulosaineisto/suo_fi_lj-%version-%date.tar.bz2
-# patch from debian
+Source1:	README.MDV
+# patches from debian
 Patch0:		festvox-suopuhe-lj-paths.diff
+Patch1:		festvox-suopuhe-lj-funcname.patch
 BuildRoot:	%{_tmppath}/%{name}-buildroot
 BuildArch:	noarch
 Requires:	festvox-suopuhe-common
@@ -33,6 +35,8 @@ the universities of Helsinki and Joensuu.
 %package -n	festvox-suopuhe-common
 Summary:	Common files for Festival Finnish speakers
 Group:		Sound
+Suggests:	festvox-suopuhe-mv
+Suggests:	festvox-suopuhe-lj
 
 %description -n	festvox-suopuhe-common
 This package contains the common files between the two Finnish
@@ -42,6 +46,12 @@ festvox-suopuhe-lj.
 %prep
 %setup -q -n festival
 %patch0 -p1
+%patch1 -p1
+cp -a %{SOURCE1} .
+cat > README.install.urpmi <<EOF
+See suopuhe usage instructions in
+%{_docdir}/festvox-suopuhe-common/README.MDV.
+EOF
 
 %install
 rm -rf %{buildroot}
@@ -66,7 +76,6 @@ rm -rf %{buildroot}
 
 %files -n festvox-suopuhe-common
 %defattr(-,root,root)
-%doc lib/voices/finnish/suo_fi_lj_diphone/README.lj
+%doc README.MDV README.install.urpmi
 %{_datadir}/festival/voices/finnish/suopuhe.common
 %dir %{_datadir}/festival/voices/finnish
-
