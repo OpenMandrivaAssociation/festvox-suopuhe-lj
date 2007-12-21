@@ -17,6 +17,7 @@ Source1:	README.MDV
 # patches from debian
 Patch0:		festvox-suopuhe-lj-paths.diff
 Patch1:		festvox-suopuhe-lj-funcname.patch
+BuildRoot:	%{_tmppath}/%{name}-buildroot
 BuildArch:	noarch
 Requires:	festvox-suopuhe-common
 # other festvox packages seem to provide these:
