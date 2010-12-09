@@ -2,7 +2,7 @@
 %define name	festvox-suopuhe-lj
 %define version	1.0g
 %define date	20051204
-%define rel	3
+%define rel	4
 %define release	%mkrel %date.%rel
 
 Summary:	Festival Voice - Finnish female speaker (suo_fi_lj)
