@@ -1,0 +1,20 @@
+#! /bin/sh /usr/share/dpatch/dpatch-run
+## 10funcname.dpatch by Niko Tyni <ntyni@iki.fi>
+##
+## All lines beginning with `## DP:' are a description of the patch.
+## DP: Fix the definition of 'suo_fi_lj_diphone, it was being
+## DP: overridden by the next definition.
+
+@DPATCH@
+diff -urNad festvox-suopuhe-lj-1.0g-20051204~/lib/voices/finnish/suo_fi_lj_diphone/festvox/hy_fi_mv_diphone.scm festvox-suopuhe-lj-1.0g-20051204/lib/voices/finnish/suo_fi_lj_diphone/festvox/hy_fi_mv_diphone.scm
+--- festvox-suopuhe-lj-1.0g-20051204~/lib/voices/finnish/suo_fi_lj_diphone/festvox/hy_fi_mv_diphone.scm	2005-12-04 12:13:05.000000000 +0200
++++ festvox-suopuhe-lj-1.0g-20051204/lib/voices/finnish/suo_fi_lj_diphone/festvox/hy_fi_mv_diphone.scm	2007-06-02 22:42:14.000000000 +0300
+@@ -202,7 +202,7 @@
+       (voice_hy_fi_mv_diphone)))
+ 
+ (if (boundp 'suo_fi_lj_dir)
+-    (define (voice_suo_fi_lj_diphone)
++    (define (suo_fi_lj_diphone)
+       "(suo_fi_lj_diphone)
+ Switch to the Finnish female voice.
+ Suopuhe's support for Festival's in-build voice-locating mechanism."
