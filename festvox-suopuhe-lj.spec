@@ -79,3 +79,31 @@ rm -rf %{buildroot}
 %doc README.MDV README.install.urpmi
 %{_datadir}/festival/voices/finnish/suopuhe.common
 %dir %{_datadir}/festival/voices/finnish
+
+
+%changelog
+* Thu Dec 09 2010 Oden Eriksson <oeriksson@mandriva.com> 1.0g-20051204.4mdv2011.0
++ Revision: 618267
+- the mass rebuild of 2010.0 packages
+
+* Thu Sep 03 2009 Thierry Vignaud <tv@mandriva.org> 1.0g-20051204.3mdv2010.0
++ Revision: 428716
+- rebuild
+
+* Fri Dec 21 2007 Olivier Blin <oblin@mandriva.com> 1.0g-20051204.2mdv2008.1
++ Revision: 136415
+- restore BuildRoot
+
+  + Thierry Vignaud <tv@mandriva.org>
+    - kill re-definition of %%buildroot on Pixel's request
+
+* Sat Sep 01 2007 Anssi Hannula <anssi@mandriva.org> 1.0g-20051204.2mdv2008.0
++ Revision: 77423
+- add documentation from Debian
+- fix a function name (P1 from Debian)
+- add Suggests to festvox-suopuhe-common for better festival behaviour
+
+
+* Sun Aug 06 2006 Anssi Hannula <anssi@mandriva.org> 1.0g-20051204.1mdv2007.0
+- initial Mandriva release
+

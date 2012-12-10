@@ -1,0 +1,110 @@
+Suopuhe: Finnish voices for the Festival speech synthesis system
+=================================================================
+
+The Suopuhe project have made two Finnish voices freely available under
+the LGPL: a female one ("suo_fi_lj") and a male one ("hy_fi_mv"). These
+are separately packaged for Mandriva in the festvox-suopuhe-{mv,lj}
+packages.  Although you can install just one of them and get them to work,
+it is recommended to install both, for reasons described below. You may
+also want to install an English voice, eg. the festvox-kallpc16k package,
+to avoid startup warnings about not having a default voice available.
+
+The festvox-suopuhe-common package contains some documentation in Finnish,
+namely the README.lj file. This file was written by the Suopuhe project
+authors in 2003-2004, and some information in it is now outdated. It is
+included for the sake of completeness.
+
+As the festival system is not very intuitive or user-friendly to
+beginners, this documents tries to describe its basic usage with the
+Finnish voices.  Full documentation on using the Festival system can be
+found in the festival package.
+
+Activating the voices
+---------------------
+
+There are several ways to activate these voices:
+
+A.  invoke festival with 'festival --language finnish', switch
+    between the voices with the 'male1 and 'female1 functions:
+
+    % festival --language finnish           
+    Festival Speech Synthesis System 1.4.3:release Jan 2003
+    Copyright (C) University of Edinburgh, 1996-2003. All rights reserved.
+    For details type `(festival_warranty)'
+    festival> (male1)  
+    hy_fi_mv_diphone
+    festival> (female1)
+    suo_fi_lj_diphone
+
+B.  call the 'language_finnish function from festival; again use the 
+    'male1 and 'female functions to switch between the voices
+
+    festival> (language_finnish)
+    finnish
+    festival> (male1)  
+    hy_fi_mv_diphone
+    festival> (female1)
+    suo_fi_lj_diphone
+
+C.  explicitly enable either of the voices:
+
+    festival> (voice_suo_fi_lj_diphone)
+    suo_fi_lj_diphone
+    festival> (voice_hy_fi_mv_diphone)
+    hy_fi_mv_diphone
+
+    Note that if you have only installed the festvox-suopuhe-lj package,
+    and not festvox-suopuhe-mv, this is the only option available.
+
+D.  set a default voice in ~/.festivalrc:
+
+    (set! voice_default 'voice_suo_fi_lj_diphone)
+
+    This is also useful for eg. the text2wav utility.
+
+Speaking Finnish
+----------------
+
+After activating the desired voice, the simplest way to get the system
+to speak is the 'SayText function:
+
+    festival> (language_finnish)
+    finnish
+    festival> (SayText "Kukkuluuruu")
+    #<Utterance 0xb73b50b8>
+
+You can also read a file aloud with the 'tts function:
+
+    festival> (tts "suomea.txt" nil)
+    nil
+
+The non-ASCII Finnish characters ("ä", "ö" etc.) are slightly
+problematic, however.  
+
+First, the system wants them in the ISO-8859-1 character set, while
+UTF-8 is the default nowadays, so you may have to recode them with
+eg. the iconv program:
+
+    iconv -f UTF-8 -t ISO-8859-1 oma.txt > luettava.txt
+
+Second, the festival command line can not handle most non-ASCII
+characters, but rather considers the eighth bit as a meta flag, and
+eg. "ä" becomes a backspace. The way around this is to only use the
+'tts function. Here's an example of doing this from the command line and
+recoding on the fly with another character set translator tool (recode):
+
+    % echo äiti | recode utf8..latin1 | festival --language finnish --tts
+
+Numbers, abbreviations and other such unreadable strings found in usual
+written Finnish text can be converted to readable form by using the
+lavennin program. For example, "15:sta" will not be read correctly unless
+lavennin is used. Here's an example:
+    % echo "15:sta yöstä" | \
+       recode utf8..latin1 | lavennin | festival --language finnish --tts
+
+
+ -- Niko Tyni <ntyni@iki.fi> Fri, 06 Jul 2007 20:37:38 +0300
+ -- Anssi Hannula <anssi@mandriva.org> Sat, 01 Sep 2007 14:54:36 +0200
+
+File originally written by Niko Tyni for Debian package, small changes by
+Anssi Hannula.
