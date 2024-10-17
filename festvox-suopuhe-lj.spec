@@ -11,7 +11,7 @@ Version:	%version
 Release:	%release
 License:	LGPL
 Group:		Sound
-URL:		http://phon.joensuu.fi/suopuhe/
+URL:		https://phon.joensuu.fi/suopuhe/
 Source:		http://phon.joensuu.fi/suopuhe/tulosaineisto/suo_fi_lj-%version-%date.tar.bz2
 Source1:	README.MDV
 # patches from debian
