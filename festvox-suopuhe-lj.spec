@@ -3,7 +3,7 @@
 %define version	1.0g
 %define date	20051204
 %define rel	4
-%define release	%mkrel %date.%rel
+%define release %date.%rel.1
 
 Summary:	Festival Voice - Finnish female speaker (suo_fi_lj)
 Name:		%name
